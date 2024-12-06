@@ -1,0 +1,609 @@
+/*===================== 全局 ===============================*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --main-color: white;
+    --bg-color: black;
+    --headerTxt-color: #853434;
+    --hover-color: #ffffff;
+    --button-color: #ee7d7d;
+    --footer-color: #c3c3c3;
+    --transition-duration: 0.3s;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--main-color);
+    font-family: Arial, sans-serif; /* 设置全局字体 */
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    color: var(--hover-color);
+}
+.main {
+    padding: 20px;
+}
+/*==================== header ====================*/
+
+.header {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    z-index: 10;
+    background-color: var(--bg-color);
+}
+
+.nav__logo-container {
+    margin-right: auto;
+}
+
+.nav__logo,
+.nav__list a {
+    color: var(--headerTxt-color); /* 使用新的头部文字颜色 */
+    font-weight: bold;
+    line-height: 45px;
+}
+
+.header-title {
+    color: var(--headerTxt-color); /* 使用新的头部文字颜色 */
+    font-weight: bold;
+    line-height: 45px;
+    font-size: 1.2em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav__list {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin-right: 20px;
+}
+
+.nav__list li {
+    margin: 0 20px;
+}
+
+.nav__list a:hover,
+.nav__list a:active {
+    color: var(--hover-color); /* 鼠标悬停和激活时的颜色 */
+}
+
+/* 当屏幕宽度小于某个值时隐藏导航栏但不隐藏标题，并加大标题字体 */
+@media (max-width: 865px) {
+    .header {
+        height: 60px; /* 增加header的高度以适应更大的字体 */
+    }
+
+    .nav__logo-container, .nav__list {
+        display: none; /* 隐藏logo和导航列表 */
+    }
+
+    .header-title {
+        font-size: 1.8em; /* 加大标题字体 */
+        line-height: 60px; /* 调整行高以匹配header高度 */
+    }
+}
+
+/*==================== img ====================*/
+
+.container {
+    width: 100%;
+    height: 680px;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.image {
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    transition: filter var(--transition-duration), transform var(--transition-duration);
+}
+
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#image1 { left: 14.4%; z-index: 1; }
+#image2 { left: 26%; z-index: 2; }
+#image3 { left: 40%; z-index: 3; }
+#image4 { left: 54%; z-index: 2; }
+#image5 { left: 65.6%; z-index: 1; }
+
+.container:hover .image img:not(:hover) {
+    filter: blur(10px) grayscale(1);
+    transform: scale(0.9);
+}
+
+
+
+/*==================== home ====================*/
+
+.home {
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.home h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.home p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: var(--hover-color);
+}
+
+.home__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* 设置最大宽度 */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.home__content {
+    text-align: left;
+}
+
+.button {
+    background-color: var(--main-color);
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color var(--transition-duration);
+}
+
+.button:hover {
+    background-color: var(--hover-color);
+}
+
+.home__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home__image img {
+    width: 270px; /* 固定宽度以保持圆形 */
+    height: 270px; /* 固定高度以保持圆形 */
+    border-radius: 50%; /* 确保是圆形 */
+    object-fit: cover;
+}
+
+/* 当屏幕宽度小于1265px时，改变布局 */
+@media (max-width: 1264px) {
+    .home__container {
+        grid-template-rows: auto auto; /* 创建两行 */
+        grid-template-columns: 1fr; /* 单列 */
+        gap: 40px; /* 增加上下间距 */
+    }
+
+    .home__image {
+        order: -1; /* 将图片放置在最上方 */
+    }
+
+    .home__content {
+        text-align: center; /* 居中对齐文本 */
+    }
+}
+
+/*==================== about ====================*/
+
+.about {
+    text-align: center;
+    padding: 60px 0;
+    height: auto; /* 让高度根据内容自动调整 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--main-color); /* 使用全局文本颜色 */
+}
+
+.section__title,
+.section__subtitle {
+    margin-bottom: 10px;
+    color: var(--main-color);
+}
+
+.section__title {
+    font-size: 2em;
+}
+
+.section__subtitle {
+    font-size: 1.2em;
+    color: var(--hover-color);
+    margin-bottom: 20px;
+}
+
+.about__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 20px;
+    flex-wrap: wrap; /* 允许在小屏幕上换行 */
+}
+
+.about__img {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.about__data {
+    flex: 1;
+    text-align: left;
+    color: var(--hover-color);
+}
+
+.about__description {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.about__info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.about__info div {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about__info-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--main-color);
+    margin-bottom: 5px;
+}
+
+.about__info-name {
+    font-size: 1em;
+    color: var(--hover-color);
+}
+
+.about__buttons {
+    text-align: center;
+}
+
+.button {
+    background-color: #333;
+    color: var(--main-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color var(--transition-duration);
+    display: inline-flex;
+    align-items: center;
+}
+
+.button:hover {
+    background-color: var(--hover-color);
+}
+
+.button__icon {
+    margin-left: 10px;
+}
+
+/* 当屏幕宽度小于870px时，改变布局 */
+@media (max-width: 869px) {
+    .about__container {
+        flex-direction: column; /* 改变为单列布局 */
+        align-items: center; /* 居中对齐 */
+    }
+
+    .about__img {
+        order: -1; /* 将图片放置在最上方 */
+        width: 100%; /* 图片宽度为容器的100% */
+        max-width: 400px; /* 设置最大宽度 */
+        margin-bottom: 10px; /* 增加底部间距 */
+    }
+
+    .about__data {
+        text-align: center; /* 文字内容居中对齐 */
+        margin-top: 20px; /* 增加上方间距 */
+    }
+
+}
+/* ==================== project ==================== */
+/* ==================== project 部分 ==================== */
+
+.project {
+    text-align: center;
+    padding: 60px 0;
+}
+
+.project__title {
+    font-size: 2rem;
+    margin-bottom: 40px; /* 确保标题与副标题之间的间距 */
+    color: var(--main-color);
+}
+
+.project__subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 50px; /* 确保副标题与游戏界面之间的间距 */
+    color: var(--hover-color);
+}
+
+.project__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 确保子元素水平居中 */
+    justify-content: center; /* 如果需要垂直居中，可以使用这个属性 */
+    width: 100%;
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: auto; /* 自动左右外边距以实现水平居中 */
+    border: 1px solid var(--bg-color);
+    box-sizing: border-box; /* 确保边框和填充不会增加容器宽度 */
+    padding: 20px; /* 可选：为游戏容器添加内边距 */
+    border-radius: 10px; /* 修改：游戏容器圆角 */
+    overflow: hidden; /* 确保内部内容不溢出圆角边界 */
+}
+
+canvas {
+    background-color: #f0f0f0;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: auto; /* 确保canvas在父容器内居中 */
+    border-radius: 8px; /* 修改：canvas圆角稍微小一点，确保边缘平滑 */
+}
+
+#status {
+    text-align: center;
+    margin: 10px 0;
+    z-index: 2; /* 提高z-index以确保文字不被图片遮挡 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--main-color);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.2em;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+#controls-panel {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#controls button,
+#startButton,
+#endButton {
+    margin: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: var(--button-color); /* 使用新的按钮颜色 */
+    color: var(--main-color);
+    border: none;
+    border-radius: 4px;
+    transition: all var(--transition-duration) ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#controls button:hover,
+#startButton:hover,
+#endButton:hover {
+    background-color: var(--hover-color);
+}
+
+.hidden {
+    display: none;
+}
+
+#score {
+    font-size: 1.5rem;
+    color: var(--button-color); /* 使用新的按钮颜色 */
+    margin-top: 30px; /* 修改得分与游戏界面的距离间隔为30px */
+}
+
+/* 游戏容器默认尺寸 */
+@media (min-width: 570px) {
+    #game-container {
+        width: 500px;
+        height: 400px;
+    }
+
+    canvas {
+        height: 400px; /* 固定高度以保持宽高比 */
+    }
+}
+
+/* 小于570px时的游戏容器尺寸 */
+@media (max-width: 569px) {
+    #game-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    canvas {
+        height: 200px; /* 固定高度以保持宽高比 */
+    }
+
+    /* 添加游戏未开始时显示的图片 */
+    #game-container::before {
+        content: '';
+        position: absolute;
+        top: 30px; /* 修改图片位置，使其向下平移30px */
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('images/image3.jpg'); /* 替换为你的图片路径 */
+        background-size: contain; /* 图片将完全适应容器，但保持比例 */
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 1; /* 确保图片在其他元素后面 */
+        opacity: 0.7; /* 图片透明度 */
+        border-radius: 10px; /* 修改：背景图片圆角 */
+    }
+}
+/* ==================== CONTACT ME ==================== */
+
+.contact {
+    text-align: center;
+    padding: 60px 0;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color);
+}
+
+/* 标题 */
+.contact__title {
+    font-size: 2em;
+    color: var(--main-color); /* 使用主文本颜色 */
+    margin-bottom: 10px;
+}
+
+/* 副标题 */
+.contact__subtitle {
+    font-size: 1.2em;
+    color: var(--hover-color); /* 使用悬停颜色 */
+    margin-bottom: 20px;
+}
+
+/* CONTACT ME容器 */
+.contact__container {
+    display: flex;
+    flex-direction: column; /* 修改为垂直排列 */
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+/* 小条 */
+.contact_smallBars {
+    height: 4px; /* 高度为4px */
+    width: 80%; /* 宽度为父容器的80% */
+    background-color: var(--hover-color); /* 使用根颜色 */
+    border-radius: 2px; /* 圆角 */
+    margin: 0 auto; /* 水平居中 */
+    display: block; /* 确保它是块级元素 */
+}
+
+/* 联系信息部分 */
+.contact__information {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px; /* 设置内部元素间距 */
+}
+
+.contact__information .contact_smallBars {
+    margin: 10px 0; /* 增加上下间距 */
+}
+
+/*==========================*/
+/* styles.css */
+#sakura-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 确保樱花不阻挡交互 */
+}
+
+.sakura {
+    position: absolute;
+    width: 30px; /* 根据需要调整大小 */
+    bottom: 100%; /* 从顶部开始 */
+    opacity: 0;
+    animation: fall linear infinite, sway ease-in-out infinite;
+}
+
+/* 定义飘落动画 */
+@keyframes fall {
+    0% {
+        bottom: 100%;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+
+/* 定义摇摆（风吹）动画 */
+@keyframes sway {
+    0%, 100% {
+        transform: translateX(0) rotate(0deg);
+    }
+    25% {
+        transform: translateX(100px) rotate(20deg);
+    }
+    75% {
+        transform: translateX(-100px) rotate(-20deg);
+    }
+}
+/* ==================== footer ==================== */
+footer {
+    color: var(--footer-color); /* 使用新的页脚颜色 */
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+    background-color: var(--bg-color);
+}
+
+footer p {
+    margin: 0;
+    padding: 0;
+}
+
+/* 可选：添加一些悬停效果 */
+footer p:hover {
+    color: var(--hover-color); /* 使用悬停颜色 */
+}
